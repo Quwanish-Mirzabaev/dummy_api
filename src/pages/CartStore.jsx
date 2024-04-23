@@ -23,6 +23,8 @@ class CartStore {
     } else {
       item.quantity = 1;
       this.cartItems.push(item);
+
+      
     }
 
     localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
