@@ -3,7 +3,9 @@ import Homepage from "./Homepage";
 import "./Header.css";
 import Cart from "./Cart";
 import Notfoundpage from "./Notfoundpage";
-import Basket from "./images/basket.png"
+import Basket from "./images/basket.png";
+import AddedItemsCounter from "./AddedItemsCounter";
+import cartStore from "./CartStore";
 
 function Header() {
   return (
@@ -21,29 +23,25 @@ function Header() {
             <li>
               <Link to="/">Home</Link>
             </li>
-          </ul>
-          <ul>
             <li>
-              <Link>Sign</Link>
+              <Link to="/signin">Sign In</Link>
             </li>
-          </ul>
-          <ul>
             <li>
               <Link to="/cart">
                 <img className="logo-img" src={Basket} alt="basket" />
+                <AddedItemsCounter />
               </Link>
             </li>
           </ul>
         </div>
       </header>
       <Routes>
-        <Route path="/" element={<Homepage />}></Route>
-        <Route path="/cart" element={<Cart />}>
-          {" "}
-        </Route>
-        <Route path="*" element={<Notfoundpage />}></Route>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="*" element={<Notfoundpage />} />
       </Routes>
     </>
   );
 }
+
 export default Header;

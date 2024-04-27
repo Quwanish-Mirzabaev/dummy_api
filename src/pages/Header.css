@@ -23,6 +23,7 @@
 }
 .header-links{
     display: flex;
+    padding-right: 20px;
 }
 .header-links ul li{
     list-style: none;
