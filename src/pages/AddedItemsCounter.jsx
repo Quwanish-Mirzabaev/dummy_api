@@ -4,7 +4,7 @@ import cartStore from "./CartStore";
 
 const AddedItemsCounter = observer(() => {
   return (
-      <sub>:{cartStore.totalAddedItems}</sub>
+      <p>:{cartStore.totalAddedItems}</p>
   );
 });
 

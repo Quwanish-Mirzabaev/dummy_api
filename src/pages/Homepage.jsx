@@ -1,10 +1,10 @@
 import { observer } from "mobx-react";
 import cartStore from "./CartStore";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import "./Homepage.css"
+import "./Homepage.css";
+import { Link } from "react-router-dom";
 const src = "https://fakestoreapi.com/products/";
-
 
 function Homepage() {
   const [articles, setArticles] = useState([]);
@@ -21,16 +21,22 @@ function Homepage() {
 
   return (
     <div className="products">
-      {articles.map((article, index) => {
+      {articles.map((product, index) => {
         return (
-          <div className="card" key={index}>
-            <div>
-              <img className="product-img" src={article.image} alt="" />
+          <div className="card">
+            <div className="img-div">
+              <img className="product-img" src={product.image} alt="" />
             </div>
-            <p className="Product">{article.title}</p>
-            <p> ${article.price}</p>
-            <p>{article.category}</p>
-            <button className="add-btn" onClick={() => addToCart(article)}>Add to Cart</button>
+            <Link to={`product/${product.id}`}>
+              <p className="Product">{product.title}</p>
+            <p className="product_price">  {product.price}$</p>
+            </Link>
+           <div className="add-div">
+
+            <button className="add-btn" onClick={() => addToCart(product)}>
+              Add to Cart
+            </button>
+           </div>
           </div>
         );
       })}

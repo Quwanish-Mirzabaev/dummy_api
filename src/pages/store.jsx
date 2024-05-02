@@ -23,4 +23,4 @@ class CartStore {
 }
 
 const store = new CartStore();
-export default {store};
+export default store;

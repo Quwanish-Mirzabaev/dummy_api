@@ -35,12 +35,7 @@
    object-fit:contain;
    margin-right: 20px;
  }
- 
- .product-title {
-   font-size: 16px;
-   font-weight: bold;
- }
- 
+  
  .btn-group {
    display: flex;
    align-items: center;
@@ -56,5 +51,19 @@
    cursor: pointer;
    background-color: #ff7675;
    color: #fff;
+   border-radius: 5px;
  }
   
+ .product-tit{
+  width: 40%;
+ }
+.btn-buy{
+  padding: 5px 10px;
+  margin-left: 10px;
+  width: 100px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: #75fff6c6;
+  color: #fff;
+}
