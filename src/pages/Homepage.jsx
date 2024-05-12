@@ -1,47 +1,56 @@
-import { observer } from "mobx-react";
-import cartStore from "./CartStore";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import "./Homepage.css";
 import { Link } from "react-router-dom";
-const src = "https://fakestoreapi.com/products/";
+
+const src = "https://dummyjson.com/products";
 
 function Homepage() {
-  const [articles, setArticles] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    axios.get(src).then((data) => {
-      setArticles(data.data);
+    axios.get(src).then((response) => {
+      setProducts(response.data.products);
     });
   }, []);
 
-  const addToCart = (item) => {
-    cartStore.addToCart(item);
-  };
+  console.log(search);
 
   return (
-    <div className="products">
-      {articles.map((product, index) => {
-        return (
-          <div className="card">
-            <div className="img-div">
-              <img className="product-img" src={product.image} alt="" />
-            </div>
-            <Link to={`product/${product.id}`}>
-              <p className="Product">{product.title}</p>
-            <p className="product_price">  {product.price}$</p>
-            </Link>
-           <div className="add-div">
-
-            <button className="add-btn" onClick={() => addToCart(product)}>
-              Add to Cart
-            </button>
-           </div>
+    <>
+      <div className="products">
+        <div>
+          <div className="search">
+            <input
+              type="text"
+              placeholder="Search User"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
           </div>
-        );
-      })}
-    </div>
+        </div>
+
+        {products
+          .filter((product) =>
+            search.toLowerCase() === ""
+              ? product
+              : product.title.toLowerCase().includes(search)
+          )
+          .map((product) => (
+            <Link to={`/product/${product.id}`}>
+              <div className="card">
+                <div className="img-div">
+                  <img className="product-img" src={product.images[2]} alt="" />
+                </div>
+                <p className="Product">{product.title}</p>
+                <p className="product-price">{product.price}</p>
+              </div>
+            </Link>
+          ))}
+      </div>
+    </>
   );
 }
 
-export default observer(Homepage);
+export default Homepage;

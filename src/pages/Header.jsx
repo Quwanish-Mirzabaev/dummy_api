@@ -1,14 +1,12 @@
 import { Link, Route, Routes } from "react-router-dom";
-import Homepage from "./Homepage";
-import "./Header.css";
-import Cart from "./Cart";
-import Notfoundpage from "./Notfoundpage";
-import Basket from "./images/basket.png";
-import cartStore from "./CartStore";
 import { observer } from "mobx-react";
-import Productpage from "./productpage";
-import Checkout from "./checkoutpage";
-
+import Userspage from "./Userspage";
+import Homepage from "./Homepage";
+import Notfoundpage from "./Notfoundpage";
+import "./Header.css"
+import Productpage from "./Productpage";
+import UserPage from "./UserPage";
+import Todopage from "./Todopage";
 
 const Header = observer(() => {
   return (
@@ -17,33 +15,33 @@ const Header = observer(() => {
         <div>
           <h1>
             <Link to="/" className="logo">
-              AVIASEILS 
+              API 
             </Link>
           </h1>
         </div>
         <div className="header-links">
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Products</Link>
             </li>
             <li>
-              <Link to="/signin">Sign In</Link>
+              <Link to="/todo">Todos</Link>
             </li>
             <li>
-              <Link to="/cart">
-                <img className="logo-img" src={Basket} alt="basket" />
-                <span>{cartStore.totalAddedItems}</span>
+              <Link to="/users">
+                Users
                </Link>
             </li>
           </ul>
         </div>
       </header>
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="*" element={<Notfoundpage />} />
+        <Route path="/todo" element={<Todopage/>}></Route>
+        <Route path="/" element={<Homepage/>} />
+        <Route path="/users" element={<Userspage/>} />
+        <Route path="*" element={<Notfoundpage/>} />
+        <Route path="/users/user/:Id" element={<UserPage/>}/>
         <Route path="product/:Id" element={<Productpage/>} />
-      <Route path="/chechout" element={<Checkout/>}></Route>
       </Routes>
     </>
   );
