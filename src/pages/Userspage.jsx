@@ -55,9 +55,9 @@ const Userspage = observer(() => {
           <tbody>
             {users
               .filter((item) => {
-                return SearchStore.search() === ""
+                return SearchStore.search.toLowerCase() === ""
                   ? item
-                  : item.firstName.includes(SearchStore.search);
+                  : item.firstName.toLowerCase().includes(SearchStore.search);
               })
               .map((user) => (
                 <tr key={user.id}>
