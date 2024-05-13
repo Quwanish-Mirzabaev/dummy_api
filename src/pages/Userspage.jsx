@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./Userspage.css";
 import SearchStore from "./SearchStore";  
+
 
 
 const src = "https://dummyjson.com/users";
@@ -11,6 +12,7 @@ const src = "https://dummyjson.com/users";
 const Userspage = observer(() => {
   const [users, setUsers] = useState([]); 
   const [error, setError] = useState(null); 
+  const { Id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
